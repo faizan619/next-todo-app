@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex flex-col min-h-screen gap-5 justify-center items-center">
       <h1 className="text-2xl underline">Home Page</h1>
       <div>
-        <Button title="api/users" url="api/users"/>
+        <Button title="API Page" url="api"/>
       </div>
     </main>
   );
