@@ -1,8 +1,8 @@
-import { connectDB } from "@/app/(database)/conn/db";
+// import { connectDB } from "@/app/(database)/conn/db";
 import { User } from "@/app/(database)/models/user";
 import { NextResponse } from "next/server";
 
-connectDB()
+// connectDB()
 
 export async function GET(){
     let users = []
