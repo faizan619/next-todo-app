@@ -20,11 +20,13 @@ const UserSchema = new Schema({
     type: String,
     required: [true, "Password is Required !!"],
     minLength: [6, "minimum 6 character is required !!"],
-    maxLength: [
-      20,
-      "maximum 20 character else you won't remember the password ;)",
-    ],
   },
+  about:{
+    type:String,
+  },
+  profileURL:{
+    type:String,
+  }
 });
 
 export const User = mongoose.models.users || mongoose.model("users",UserSchema)
