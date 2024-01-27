@@ -1,6 +1,7 @@
 // import { connectDB } from "@/app/(database)/conn/db";
 import { User } from "@/app/(database)/models/user";
 import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs"
 
 // connectDB()
 
@@ -19,13 +20,17 @@ export async function GET(){
 }
 
 export async function POST(request){
-    const {name,email,password} = await request.json()
+    const {name,email,password,about,profileURL} = await request.json()
     const user = new User({
         name,
         email,
-        password
+        password,
+        about,
+        profileURL
     });
     try {
+        user.password = await bcrypt.hash(user.password, parseInt(process.env.BCRYPT_SALT));
+        console.log(user)
         const createUser = await user.save()
         const response = NextResponse.json(user,{status:201})
         return response;
@@ -40,8 +45,8 @@ export async function POST(request){
         }
         
         return NextResponse.json({
-            message:"Cannot Post the Data!!",
+            message:"User Already exist !! Create new User",
             status:false
-        })
+        },{status:500})
     }
 }
