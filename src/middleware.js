@@ -10,7 +10,7 @@ export function middleware(request) {
   const currentPathname = request.nextUrl.pathname;
   console.log("Current pathname : ", currentPathname);
 
-  if(request.nextUrl.pathname === "/api/login"){
+  if(request.nextUrl.pathname === "/api/login" || request.nextUrl.pathname === "/api/users"){
     return
   }
 
@@ -27,6 +27,12 @@ export function middleware(request) {
   } else {
     // accessing secured route without token
     if (!authToken) {
+      if(request.nextUrl.pathname.startsWith("/api")){
+        return NextResponse.json({
+          message:"Access Denied",
+          success:false
+        },{status:401})
+      }
         return NextResponse.redirect(new URL("/login", request.url));
     }
   }
