@@ -23,12 +23,13 @@ export async function POST(request){
             name:user.name
         },process.env.JWT_KEY)
 
-        console.log("user : ",user)
-        console.log("token : ",token)
+        // console.log("user : ",user)
+        // console.log("token : ",token)
 
         const response = NextResponse.json({
             message:"login success!!",
-            status:true
+            status:true,
+            user:user
         })
 
         response.cookies.set("loginToken",token,{

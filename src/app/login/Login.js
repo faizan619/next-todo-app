@@ -1,12 +1,14 @@
 "use client";
 
 import { login } from "@/services/userService";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import UserContext from "../context/userContext";
 
 export default function Register() {
   const router = useRouter()
+  const context = useContext(UserContext)
   let [data, setData] = useState({
     email:'',
     password:'',
@@ -24,7 +26,9 @@ export default function Register() {
       const result = await login(data)
       console.log(result)
       toast.success("Logged In")
+      context.setUser(result.user)
       router.push("/profile/user")
+
 
     } catch (error) {
       toast.error(error.response.data.message)

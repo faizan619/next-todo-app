@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import UserContext from "./userContext";
-import { httpAxios } from "../(database)/conn/httpHelper";
 import { currentUser } from "@/services/userService";
 import { toast } from "react-toastify";
 
@@ -10,12 +9,13 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     async function load() {
-      try {
+      try { 
         const logUser = await currentUser();
         console.log("log user : ", logUser);
         setUser({ ...logUser });
+        console.log("user provider :",user)
       } catch (error) {
-        console.log(error);
+        console.log("userprovider error : ",error);
         toast.error("Error in Loading current user..");
         setUser(undefined);
       }
