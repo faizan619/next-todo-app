@@ -70,18 +70,6 @@ export default function Navbar() {
             <Button title="Register" url="/register" />
           </>
         )}
-        {/* {context.user && (
-          <>
-            <p className="uppercase">{context.user.userData.name}</p>
-            <button onClick={doLogout} >Logout</button>
-          </>
-        )}
-        {!context.user && (
-          <>
-            <Button title="login" url="/login" />
-            <Button title="Register" url="/register" />
-          </>
-        )}  */}
       </div>
     </nav>
   );
