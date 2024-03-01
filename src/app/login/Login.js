@@ -8,7 +8,7 @@ import UserContext from "../context/userContext";
 
 export default function Register() {
   const router = useRouter()
-  const context = useContext(UserContext)
+  const conztext = useContext(UserContext)
   let [data, setData] = useState({
     email:'',
     password:'',
